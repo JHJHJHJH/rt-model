@@ -1,0 +1,21 @@
+Raw Chiller Sensor Data,Description,Unit
+record_timestamp,Date and Time of the record in Hong Kong Time,YYYY-MM-DD HH:MM:SS
+CHR-01-AMP,Chiller 1 Current,A
+CHR-01-V,Chiller 1 Voltage,V
+CHR-01-KW,Chiller 1 Power Consumption,kW
+CHR-01-CHWSWT,"Chiller 1 Chilled Water Supply Water Temperature	",°C
+CHR-01-CHWRWT,"Chiller 1 Chilled Water Return Water Temperature	",°C
+CHR-01-CHWFWR,Chiller 1 Chilled Water Flowrate,L/s
+CHR-02-AMP,Chiller 2 Current,A
+CHR-02-V,Chiller 2 Voltage,V
+CHR-02-KW,Chiller 2 Power Consumption,kW
+CHR-02-CHWSWT,Chiller 2 Chilled Water Supply Water Temperature,°C
+CHR-02-CHWRWT,Chiller 2 Chilled Water Return Water Temperature,°C
+CHR-02-CHWFWR,Chiller 2 Chilled Water Flowrate,L/s
+CHR-03-AMP,Chiller 3 Current,A
+CHR-03-V,Chiller 3 Voltage,V
+CHR-03-KW,Chiller 3 Power Consumption,kW
+CHR-03-CHWSWT,Chiller 3 Chilled Water Supply Water Temperature,°C
+CHR-03-CHWRWT,Chiller 3 Chilled Water Return Water Temperature,°C
+CHR-03-CHWFWR,Chiller 3 Chilled Water Flowrate,L/s
+….,….,….
