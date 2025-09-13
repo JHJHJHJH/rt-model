@@ -4,33 +4,27 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import dash
 from dash import dcc, html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 import datetime
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
 
-df = pd.read_csv('resources/Building_A_summary_table.csv')
+df = pd.read_csv('resources/Building_A_transformed.csv')
 #Data preparation
 df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%d/%m/%Y %H:%M')
 
-# 1 watt = 1 joule/second
-df['CHR-01-Q'] = df['CHR-01-CHWFWR'] * (df['CHR-01-CHWRWT'] - df['CHR-01-CHWSWT']) * 4.19
-df['CHR-02-Q'] = df['CHR-02-CHWFWR'] * (df['CHR-02-CHWRWT'] - df['CHR-02-CHWSWT']) * 4.19
-df['CHR-03-Q'] = df['CHR-03-CHWFWR'] * (df['CHR-03-CHWRWT'] - df['CHR-03-CHWSWT']) * 4.19
-df['CHR-04-Q'] = df['CHR-04-CHWFWR'] * (df['CHR-04-CHWRWT'] - df['CHR-04-CHWSWT']) * 4.19
-
 # Initialize Dash app
 app = dash.Dash(__name__)
-app.title = "Chiller Performance Dashboard"
+app.title = "Chiller analysis Dashboard"
 
 # Define chiller names and parameters
 chillers = ['CHR-01', 'CHR-02', 'CHR-03', 'CHR-04']
 parameters = ['CHWSWT', 'CHWRWT', 'CHWFWR', 'KW', 'Q']
 param_names = {
-    'CHWSWT': 'Chilled Water Supply Temperature (°F)',
-    'CHWRWT': 'Chilled Water Return Temperature (°F)',
-    'CHWFWR': 'Chilled Water Flow Rate (GPM)',
+    'CHWSWT': 'Chilled Water Supply Temperature (°C)',
+    'CHWRWT': 'Chilled Water Return Temperature (°C)',
+    'CHWFWR': 'Chilled Water Flow Rate (L/s)',
     'KW': 'Power Consumption (kW)',
     'Q': 'Cooling Capacity (kW)'
 }

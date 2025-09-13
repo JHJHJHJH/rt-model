@@ -2,8 +2,9 @@ import pandas as pd
 
 df = pd.read_csv('resources/Building_A_summary_table.csv')
 #Data preparation
-df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%d/%m/%Y %H:%M')
+print( "Initial shape : " + str(df.shape) )
 
+print("Adding 7 columns -\nCHR-01-Q, CHR-02-Q, CHR-03-Q, CHR-04-Q, Total_Cooling_Load, Total_Power_Consumption, Total_COP")
 # 1 watt = 1 joule/second
 # Cp = 4.19 kJ/kg.C
 # Calculate cooling capacity Q (kW) = m (l/s) * Cp (kJ/kg.C) * ΔT (C)
@@ -19,7 +20,17 @@ df['Total_Power_Consumption'] = df['CHR-01-KW'] + df['CHR-02-KW'] + df['CHR-03-K
 # COP
 df['Total_COP'] = df['Total_Cooling_Load'] / df['Total_Power_Consumption']
 
+print( f'Updated shape : {str(df.shape)}' )
+
+#clean NaN
+print("Dropping NaN values...")
+df.dropna(inplace=True)
+print( f'{len(df)} rows after dropna().' ) 
+ 
 #clean zeros
+print("Dropping Zero values...")
+df = df[ ( df['Total_Cooling_Load'] != 0 ) ]
+print( f'{len(df)} rows where "Total Cooling Load != 0" .' )
 
-
-df.to_csv('resources/Building_A_transformed.csv', index=False)
+# df = df[(df['Total_Cooling_Load'] == 0) | (df['y'] != 0)]
+df.to_csv('resources/cleaned_Building_A.csv', index=False)
