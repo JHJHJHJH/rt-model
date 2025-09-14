@@ -2,6 +2,22 @@
 
 A brief description of what this project does and who it's for.
 
+## 
+Hong Kong Park
+
+## Data
+weather report : datetime, relative humidity, temperature, station
+source : https://data.gov.hk/en-data/dataset/hk-hko-rss-current-weather-report
+
+global solar radiation : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-global-solar-radiation
+
+mean heat index : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-maximum-mean-heat-index
+
+mean wind speed : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-mean-wind-speed
+
+rainfall : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-total-rainfall
+
+solar radiation : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-global-solar-radiation
 ## Installation
 
 Install the project and its dependencies using pip:

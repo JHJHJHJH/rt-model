@@ -8,27 +8,28 @@ import joblib
 # --- Step 1: Load and Prepare Data ---
 # Load the data from the CSV file.
 try:
-    df = pd.read_csv('resources/Building_A_summary_table.csv')
+    df = pd.read_csv('resources/cleaned_Building_A.csv')
 except FileNotFoundError:
-    print("Error: Building_A_summary_table.csv not found in resources folder.")
+    print("Error: cleaned_Building_A.csv not found in resources folder.")
     exit()
 
 # Convert the 'record_timestamp' column to datetime objects.
-df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%d/%m/%Y %H:%M', errors='coerce')
+df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%d/%m/%Y %H:%M', errors='coerce').values.astype("float64")
 
 # Remove any rows that have missing values to ensure data quality.
-df.dropna(inplace=True)
+# df.dropna(inplace=True)
 
 # --- Step 2: Feature Selection and Data Splitting ---
 # For this example, we'll focus on CHR-01
-chiller_id = 'CHR-01'
-features = [f'{chiller_id}-CHWFWR', f'{chiller_id}-CHWSWT', f'{chiller_id}-CHWRWT']
-target = f'{chiller_id}-KW'
+target = 'Total_Cooling_Load'
+features = [col for col in df.columns.tolist() if col != target]
+print( features )
+
 
 # Check if all required columns are present
 required_columns = features + [target]
 if not all(col in df.columns for col in required_columns):
-    print(f"Error: Not all required columns for {chiller_id} are in the dataframe.")
+    print(f"Error: Not all required columns are in the dataframe.")
     exit()
 
 X = df[features]
