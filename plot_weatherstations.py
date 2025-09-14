@@ -28,7 +28,7 @@ for x, y, label in zip(gdf_web_mercator.geometry.x, gdf_web_mercator.geometry.y,
                 fontsize=10, fontweight='bold', color='white',
                 bbox=dict(boxstyle="round,pad=0.3", facecolor='black', alpha=0.7))
 
-plt.title('Geographic Points Map', fontsize=16)
+plt.title('HK Weather Stations Map', fontsize=16)
 plt.axis('off')
 plt.tight_layout()
 plt.show()
