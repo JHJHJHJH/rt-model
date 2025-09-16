@@ -14,7 +14,7 @@ Nearest weather station : Hong Kong Park
 | 4.| Replace Random Forest with XGBoost model | A | 0.24401739049425 |  
 | 5.| Add features - 'humidity', 'temperature' | A | 0.26268367643862 |
 | 6.| Remove features - 'day_of_week', 'month', 'day_of_month' | A | 0.231354844346216 |
-| 7.| Remove features - 'humidity', 'temperature' | A | 0.231354844346216 |
+| 7.| Remove features - 'humidity', 'temperature' | A | 0.170950607971046 |
 
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
@@ -22,6 +22,9 @@ Nearest weather station : Hong Kong Park
 - Does it matter which month ? Or just affected by seasons.
 - Does it matter which day of month (1-30)? 
 
+*7. To compare with (5), why is adding humidity and temperature worst?
+
+*8. 
 
 ## Data
 weather report : datetime, relative humidity, temperature, station
