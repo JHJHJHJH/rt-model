@@ -22,6 +22,23 @@ def extract_weather( station_name='Hong Kong Park', timestamp_col='datetime'):
     
     return df
 
+def extract_holiday():
+    df = pd.read_csv('./weather/data/hkholidays.csv')
+
+    df = df.copy()
+    df = df.drop('uid', axis=1)
+    df = df.drop('summary', axis=1)
+    df['start_date'] = pd.to_datetime(df['start_date'], format='%Y%m%d')
+    df['month'] = df['start_date'].dt.month
+    df['day_of_month'] = df['start_date'].dt.day
+    df['year'] = df['start_date'].dt.year
+
+    df['end_date'] = pd.to_datetime(df['end_date'], format='%Y%m%d')
+    df['days'] = df['end_date'] - df['start_date'] #to confirm no holiday more than 1 day
+    df['is_holiday'] = 1
+    #df.to_csv('resources/hol.csv', index=False)
+    return df
+
 
 def plot_temp(df):
     df['datetime'] = pd.to_datetime(df['datetime'])
@@ -35,12 +52,17 @@ def plot_temp(df):
     plt.savefig('temperature_vs_date.png')
     plt.show()
 
-def merge_df(df1, df2):
-    merged_df = pd.merge( df1, df2 , on=['hour_of_day', 'month', 'year', 'day_of_month'], how='left')
+def merge_df(df1, df2, columns):
+    merged_df = pd.merge( df1, df2 , on=columns, how='left')
     print(merged_df.head())
 
     return merged_df
 
 def generate_weather_feature(df):
     weather_df = extract_weather()
-    return merge_df(df, weather_df)
+    return merge_df(df, weather_df, ['hour_of_day', 'month', 'year', 'day_of_month'])
+
+
+def generate_holiday_feature(df):
+    holiday_df = extract_holiday()
+    return merge_df(df, holiday_df, ['month', 'year', 'day_of_month'])

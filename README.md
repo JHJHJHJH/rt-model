@@ -15,7 +15,7 @@ Nearest weather station : Hong Kong Park
 | 5.| Add features - 'humidity', 'temperature' | A | 0.26268367643862 |
 | 6.| Remove features - 'day_of_week', 'month', 'day_of_month' | A | 0.231354844346216 |
 | 7.| Remove features - 'humidity', 'temperature' | A | 0.170950607971046 |
-| 8.| Add features - 'business_hour', chiller off from 6pm-730am | A |  |
+| 8.| Add features - 'business_hour', chiller off from 6pm-730am | A | 0.17083490150497 |
 | 9.| Add features - 'is_holiday' | A |  |
 
 
