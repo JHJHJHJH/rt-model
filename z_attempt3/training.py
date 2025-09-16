@@ -24,7 +24,7 @@ except FileNotFoundError:
 target = 'Total_Cooling_Load'
 # features = [col for col in df.columns.tolist() if col != target]
 
-# One-hot encode the 'season' column
+    # One-hot encode the 'season' column
 df = pd.get_dummies(df, columns=['season'])
 season_columns = [col for col in df.columns if col.startswith('season_')]
 
