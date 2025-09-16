@@ -137,6 +137,36 @@ app.layout = html.Div([
     
     dcc.Graph(id='correlation-heatmap'),
     
+    # NEW: Plot of selected column against time
+    html.Hr(),
+    html.H2("Plot of selected column against time",
+            style={'textAlign': 'center', 'color': '#2c3e50', 'marginTop': '30px'}),
+    html.Div([
+        html.Div([
+            html.Label("Select Column:"),
+            dcc.Dropdown(
+                id='single-column-dropdown',
+                options=[{'label': col, 'value': col} for col in all_columns],
+                value=all_columns[0],
+                clearable=False
+            )
+        ], style={'width': '30%', 'display': 'inline-block', 'padding': '10px'}),
+        html.Div([
+            html.Label("Normalization Method:"),
+            dcc.RadioItems(
+                id='single-column-normalization',
+                options=[
+                    {'label': 'Min-Max Scaling (0-1)', 'value': 'minmax'},
+                    {'label': 'Z-Score Standardization', 'value': 'zscore'},
+                    {'label': 'No Normalization', 'value': 'none'}
+                ],
+                value='none',
+                inline=True
+            )
+        ], style={'width': '40%', 'display': 'inline-block', 'padding': '10px'})
+    ]),
+    dcc.Graph(id='single-column-plot'),
+
     dcc.Interval(
         id='interval-component',
         interval=60*1000,
@@ -162,7 +192,8 @@ def normalize_data(data, method='minmax'):
      Output('dual-parameter-plot', 'figure'),
      Output('scatter-plot', 'figure'),
      Output('correlation-stats', 'children'),
-     Output('correlation-heatmap', 'figure')],
+     Output('correlation-heatmap', 'figure'),
+     Output('single-column-plot', 'figure')],
     [Input('chiller-dropdown', 'value'),
      Input('parameter-dropdown', 'value'),
      Input('date-picker', 'start_date'),
@@ -170,10 +201,12 @@ def normalize_data(data, method='minmax'):
      Input('param1-dropdown', 'value'),
      Input('param2-dropdown', 'value'),
      Input('normalization-method', 'value'),
+     Input('single-column-dropdown', 'value'),
+     Input('single-column-normalization', 'value'),
      Input('interval-component', 'n_intervals')]
 )
 def update_dashboard(selected_chiller, selected_param, start_date, end_date, 
-                    param1, param2, norm_method, n):
+                    param1, param2, norm_method, selected_column, single_col_norm_method, n):
     # Filter data based on date range
     filtered_df = df[(df['record_timestamp'] >= start_date) & 
                     (df['record_timestamp'] <= end_date)].copy()
@@ -283,7 +316,25 @@ def update_dashboard(selected_chiller, selected_param, start_date, end_date,
                         color_continuous_scale='RdBu_r')
     heat_fig.update_layout(height=600)
     
-    return ts_fig, stats, comp_fig, dual_fig, scatter_fig, corr_stats, heat_fig
+    # NEW: Single Column Plot
+    y_data = normalize_data(filtered_df[selected_column], single_col_norm_method)
+    y_axis_label = "Normalized Value" if single_col_norm_method != 'none' else selected_column
+    
+    single_col_fig = go.Figure()
+    single_col_fig.add_trace(go.Scatter(
+        x=filtered_df['record_timestamp'],
+        y=y_data,
+        name=selected_column,
+        mode='lines'
+    ))
+    single_col_fig.update_layout(
+        title=f'Plot of {selected_column} Over Time',
+        xaxis_title='Time',
+        yaxis_title=y_axis_label,
+        hovermode='x unified'
+    )
+    
+    return ts_fig, stats, comp_fig, dual_fig, scatter_fig, corr_stats, heat_fig, single_col_fig
 
 if __name__ == '__main__':
     app.run(debug=True, port=8050)
