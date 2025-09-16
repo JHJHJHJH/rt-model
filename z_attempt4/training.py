@@ -13,7 +13,7 @@ from sklearn.model_selection import GridSearchCV
 # --- Step 1: Load and Prepare Data ---
 # Load the data from the CSV file.
 try:
-    df = pd.read_csv('resources/3_Building_A.csv')
+    df = pd.read_csv('resources/4_Building_A.csv')
 except FileNotFoundError:
     print("Error: File not found in resources folder.")
     exit()
@@ -69,9 +69,9 @@ model = xgb.XGBRegressor(
 )
 # Initialize Grid Search
 param_grid = {
-    'max_depth': [3, 6, 9],
+    'max_depth': [4, 6, 8],
     'learning_rate': [0.01, 0.05, 0.1],
-    'n_estimators': [100, 500, 1000],
+    'n_estimators': [ 900, 1000 , 1200],
     'subsample': [0.6, 0.8, 1.0],
 }
 
