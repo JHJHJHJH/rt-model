@@ -5,10 +5,11 @@ A brief description of what this project does and who it's for.
 ## 
 Hong Kong Park
 
-#Attempt log  | NRMSE
-1. Feature engineer on given timestamps (Building A only) - 'hour_of_day', 'day_of_week', 'month', 'is_weekend' |  0.272324029077967.
-2. Remove rows where 'Total Cooling Load' is 0 kW  (Building A only) | 0.760444006251237.
-3. 
+## Changelog
+| Attempt | Log | Building(s) | NRMSE |
+| 1.| Feature engineer on given timestamps - 'hour_of_day', 'day_of_week', 'month', 'is_weekend' | A | 0.272324029077967.
+| 2.| Remove rows where 'Total Cooling Load' is 0 kW  | A | 0.760444006251237.
+| 3.| Reinstate rows where 'Total Cooling Load' is 0 kW. Add features - 'season', 'day_of_month' | A | 0.27278177369591
 
 
 ## Data

@@ -10,9 +10,9 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
 
-df = pd.read_csv('resources/Building_A_transformed.csv')
+df = pd.read_csv('resources/1_Building_A.csv')
 #Data preparation
-df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%d/%m/%Y %H:%M')
+df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%Y-%m-%d %H:%M:%S')
 
 # Initialize Dash app
 app = dash.Dash(__name__)
