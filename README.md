@@ -11,7 +11,7 @@ Hong Kong Park
 | 1.| Feature engineer on given timestamps - 'hour_of_day', 'day_of_week', 'month', 'is_weekend' | A | 0.272324029077967 |
 | 2.| Remove rows where 'Total Cooling Load' is 0 kW  | A | 0.760444006251237 |
 | 3.| Reinstate rows where 'Total Cooling Load' is 0 kW. Add features - 'season', 'day_of_month' | A | 0.27278177369591 |
-| 4.| Try XGBoost model | A |  |
+| 4.| Try XGBoost model | A |  0.244339189785072 |
 
 
 ## Data
