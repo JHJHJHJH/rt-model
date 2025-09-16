@@ -8,7 +8,7 @@ def extract_weather( station_name='Hong Kong Park', timestamp_col='datetime'):
     df = df.drop('source_zip', axis=1)
     df = df.drop('source_xml', axis=1)
     df = df[ ( df['station_name'] == station_name  ) ]
-    
+    df = df.drop('station_name', axis=1)
     # Convert to datetime
     df[timestamp_col] = pd.to_datetime(df[timestamp_col], format='%Y-%m-%d %H:%M:%S')
     
@@ -32,25 +32,24 @@ def extract_holiday():
     df['month'] = df['start_date'].dt.month
     df['day_of_month'] = df['start_date'].dt.day
     df['year'] = df['start_date'].dt.year
-
-    df['end_date'] = pd.to_datetime(df['end_date'], format='%Y%m%d')
-    df['days'] = df['end_date'] - df['start_date'] #to confirm no holiday more than 1 day
+    df = df.drop('start_date', axis=1)
+    df = df.drop('end_date', axis=1)
+    # df['end_date'] = pd.to_datetime(df['end_date'], format='%Y%m%d')
+    # df['days'] = df['end_date'] - df['start_date'] #to confirm no holiday more than 1 day
     df['is_holiday'] = 1
     #df.to_csv('resources/hol.csv', index=False)
     return df
 
+def extract_solar():
+    df = pd.read_csv('./weather/data/daily_KP_SolarRadiation_ALL.csv')
 
-def plot_temp(df):
-    df['datetime'] = pd.to_datetime(df['datetime'])
+    df = df.copy()
+    df = df.drop('數據完整性/data Completeness', axis=1) #checked all required data are 'C'
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(df['datetime'], df['temperature'])
-    plt.xlabel('Date')
-    plt.ylabel('Temperature')
-    plt.title('Temperature vs Date')
-    plt.grid(True)
-    plt.savefig('temperature_vs_date.png')
-    plt.show()
+    df = df.rename(columns={'年/Year': 'year', '月/Month': 'month', '日/Day' : 'day_of_month' , '數值/Value': 'solar'})
+
+    #df.to_csv('resources/solar.csv', index=False)
+    return df
 
 def merge_df(df1, df2, columns):
     merged_df = pd.merge( df1, df2 , on=columns, how='left')
@@ -66,3 +65,13 @@ def generate_weather_feature(df):
 def generate_holiday_feature(df):
     holiday_df = extract_holiday()
     return merge_df(df, holiday_df, ['month', 'year', 'day_of_month'])
+
+def generate_solar_feature(df):
+    solar_df = extract_solar()
+
+    merged = merge_df(df, solar_df, ['month', 'year', 'day_of_month'])
+    return merged
+
+
+
+extract_solar()

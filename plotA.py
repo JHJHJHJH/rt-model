@@ -10,7 +10,7 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
 
-df = pd.read_csv('resources/1_Building_A.csv')
+df = pd.read_csv('resources/10_Building_A.csv')
 #Data preparation
 df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%Y-%m-%d %H:%M:%S')
 
@@ -307,7 +307,7 @@ def update_dashboard(selected_chiller, selected_param, start_date, end_date,
         corr_stats = [html.P("Selected parameters not available in filtered data")]
     
     # Correlation Heatmap
-    numeric_cols = [col for col in df.columns if col != 'record_timestamp']
+    numeric_cols = [col for col in df.columns if col != 'record_timestamp' and col != 'season']
     corr_data = filtered_df[numeric_cols].corr()
     
     heat_fig = px.imshow(corr_data,
