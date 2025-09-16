@@ -3,7 +3,7 @@
 A brief description of what this project does and who it's for.
 
 ## 
-Hong Kong Park
+Nearest weather station : Hong Kong Park
 
 ## Changelog
 | Attempt | Log | Building(s) | NRMSE |
@@ -12,6 +12,7 @@ Hong Kong Park
 | 2.| Remove rows where 'Total Cooling Load' is 0 kW  | A | 0.760444006251237 |
 | 3.| Reinstate rows where 'Total Cooling Load' is 0 kW. Add features - 'season', 'day_of_month' | A | 0.27278177369591 |
 | 4.| Replace Random Forest with XGBoost model | A | 0.24401739049425 |  
+| 5.| Add features - 'humidity', 'temperature' | A | 0.26268367643862 |
 
 
 ## Data
