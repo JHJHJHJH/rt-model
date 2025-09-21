@@ -19,6 +19,7 @@ Nearest weather station : Hong Kong Park
 | 9.| Add features - 'is_holiday' | A | 0.156259368721473 |
 | 10. | Reinstate/ Add features - 'solar' , 'temperature', 'humidity' | A | 0.216272799454793
 | 11. | Early stopping to prevent overfitting | A | 0.20528351341103
+| 12. | Add features - 'wind', 'rain' | A | 0.203494898452382
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
 - Does it matter whether it is a Monday or Friday ? Or only weekend or weekday.
@@ -27,7 +28,6 @@ Nearest weather station : Hong Kong Park
 
 *7. To compare with (5), why is adding humidity and temperature worst?
 
-*8. 
 
 ## Data
 weather report : datetime, relative humidity, temperature, station

@@ -1,6 +1,4 @@
-﻿總雨量 (毫米) - 京士柏
-Total Rainfall (mm) - King's Park
-年/Year,月/Month,日/Day,數值/Value,數據完整性/data Completeness
+﻿年/Year,月/Month,日/Day,數值/Value,數據完整性/data Completeness
 1992,7,1,0.0,C
 1992,7,2,1.7,C
 1992,7,3,0.0,C
@@ -12085,7 +12083,3 @@ Total Rainfall (mm) - King's Park
 2025,7,29,81.4,C
 2025,7,30,0.0,C
 2025,7,31,1.1,C
-
-*** 沒有數據/unavailable
-# 數據不完整/data incomplete
-C 數據完整/data Complete

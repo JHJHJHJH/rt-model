@@ -51,6 +51,30 @@ def extract_solar():
     #df.to_csv('resources/solar.csv', index=False)
     return df
 
+def extract_wind():
+    df = pd.read_csv('./weather/data/daily_KP_WindSpeed_ALL.csv')
+
+    df = df.copy()
+    df = df.drop('數據完整性/data Completeness', axis=1) #checked all required data are 'C'
+
+    df = df.rename(columns={'年/Year': 'year', '月/Month': 'month', '日/Day' : 'day_of_month' , '數值/Value': 'wind'})
+    df['wind'] = pd.to_numeric(df['wind'], errors='coerce').fillna(0)
+
+    #df.to_csv('resources/solar.csv', index=False)
+    return df
+
+def extract_rain():
+    df = pd.read_csv('./weather/data/daily_KP_Rainfall_ALL.csv')
+
+    df = df.copy()
+    df = df.drop('數據完整性/data Completeness', axis=1) #checked all required data are 'C'
+
+    df = df.rename(columns={'年/Year': 'year', '月/Month': 'month', '日/Day' : 'day_of_month' , '數值/Value': 'rain'})
+    df['rain'] = pd.to_numeric(df['rain'], errors='coerce').fillna(0)
+
+    #df.to_csv('resources/solar.csv', index=False)
+    return df
+
 def merge_df(df1, df2, columns):
     merged_df = pd.merge( df1, df2 , on=columns, how='left')
     print(merged_df.head())
@@ -73,5 +97,15 @@ def generate_solar_feature(df):
     return merged
 
 
+def generate_wind_feature(df):
+    solar_df = extract_wind()
 
-extract_solar()
+    merged = merge_df(df, solar_df, ['month', 'year', 'day_of_month'])
+    return merged
+
+
+def generate_rain_feature(df):
+    solar_df = extract_rain()
+
+    merged = merge_df(df, solar_df, ['month', 'year', 'day_of_month'])
+    return merged

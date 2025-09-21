@@ -1,6 +1,4 @@
-﻿平均風速 (公里/小時) - 京士柏
-Mean Wind Speed (km/h) - King's Park
-年/Year,月/Month,日/Day,數值/Value,數據完整性/data Completeness
+﻿年/Year,月/Month,日/Day,數值/Value,數據完整性/data Completeness
 1992,7,1,6.4,#
 1992,7,2,7.4,#
 1992,7,3,8.5,C
@@ -12085,7 +12083,3 @@ Mean Wind Speed (km/h) - King's Park
 2025,7,29,8.1,C
 2025,7,30,8.8,C
 2025,7,31,9.5,C
-
-*** 沒有數據/unavailable
-# 數據不完整/data incomplete
-C 數據完整/data Complete
