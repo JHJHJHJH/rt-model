@@ -7,6 +7,9 @@ from datetime import time
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import weather.utils as utils
+parent = os.path.dirname(__file__)
+model_path = os.path.join(parent, 'rt_model.joblib')
+predictions_path = os.path.join(parent, 'predictions.csv')
 df =  pd.read_csv('resources/Result.csv')
 season_map = {
     12: 'Winter', 1: 'Winter', 2: 'Winter',
@@ -54,10 +57,8 @@ def create_time_features(df, timestamp_col):
 df = create_time_features(df, 'prediction_time')
 df = utils.generate_weather_feature(df)
 X_test = df[['hour_of_day', 'is_weekend','is_business_hour', 'season_Fall', 'season_Spring', 'season_Summer', 'season_Winter']]
-loaded_model = joblib.load('rt_model_8.joblib')
-# predictions = loaded_model.predict(X_test)
+loaded_model = joblib.load(model_path)
 predictions = numpy.maximum(0., loaded_model.predict(X_test) )
-
 df_res =  pd.read_csv('resources/Result.csv')
 df_res['predicted_load'] = predictions
-df_res.to_csv('resources/8_predictions.csv',index=False)
+df_res.to_csv(predictions_path, index=False)

@@ -4,14 +4,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import joblib
-
+import os
 # --- Step 1: Load and Prepare Data ---
 # Load the data from the CSV file.
 try:
-    df = pd.read_csv('resources/2_Building_A.csv')
+    parent = os.path.dirname(__file__)
+    data_path=os.path.join(parent, 'Building_A.csv')
+    df = pd.read_csv(data_path)
 except FileNotFoundError:
-    print("Error: File not found in resources folder.")
+    print("Error: Building_A.csv not found in folder.")
     exit()
+
 
 # Convert the 'record_timestamp' column to datetime objects.
 # df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%d/%m/%Y %H:%M').values.astype("float64")
@@ -56,6 +59,6 @@ print(f"Model Mean Squared Error: {mse:.2f}")
 
 # --- Step 5: Save the Model ---
 # Save the trained model to a file
-model_filename = 'rt_model_2.joblib'
+model_filename = os.path.join(parent, 'rt_model.joblib')
 joblib.dump(model, model_filename)
 print(f"Model saved as {model_filename}")

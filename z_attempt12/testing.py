@@ -8,7 +8,11 @@ import xgboost as xgb
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import weather.utils as utils
+parent = os.path.dirname(__file__)
+model_path = os.path.join(parent, 'rt_model.joblib')
+predictions_path = os.path.join(parent, 'predictions.csv')
 df =  pd.read_csv('resources/Result.csv')
+
 season_map = {
     12: 'Winter', 1: 'Winter', 2: 'Winter',
     3: 'Spring', 4: 'Spring', 5: 'Spring',
@@ -62,11 +66,9 @@ df = utils.generate_wind_feature(df)
 features = ['hour_of_day', 'is_weekend', 'is_business_hour', 'is_holiday', 'temperature', 'humidity', 'solar', 'rain', 'wind', 'season_Fall', 'season_Spring', 'season_Summer', 'season_Winter']
 X_test = df[features]
 print(X_test.head(5))
-loaded_model = joblib.load('rt_model_12.joblib')
+loaded_model = joblib.load(model_path)
 dval = xgb.DMatrix(X_test, feature_names=features)
-# predictions = loaded_model.predict(X_test)
-predictions = numpy.maximum(0., loaded_model.predict(dval) )
-
+predictions = numpy.maximum(0., loaded_model.predict(X_test) )
 df_res =  pd.read_csv('resources/Result.csv')
 df_res['predicted_load'] = predictions
-df_res.to_csv('resources/12_predictions.csv',index=False)
+df_res.to_csv(predictions_path, index=False)

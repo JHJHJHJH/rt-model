@@ -1,6 +1,9 @@
 import joblib
 import pandas as pd
-
+import os
+parent = os.path.dirname(__file__)
+model_path = os.path.join(parent, 'rt_model.joblib')
+predictions_path = os.path.join(parent, 'predictions.csv')
 df =  pd.read_csv('resources/Result.csv')
 
 def create_time_features(df, timestamp_col):
@@ -22,9 +25,9 @@ def create_time_features(df, timestamp_col):
 
 df = create_time_features(df, 'prediction_time')
 X_test = df[['hour_of_day', 'day_of_week', 'month', 'is_weekend']]
-loaded_model = joblib.load('rt_model_2.joblib')
+loaded_model = joblib.load(model_path)
 predictions = loaded_model.predict(X_test)
 
 df_res =  pd.read_csv('resources/Result.csv')
 df_res['predicted_load'] = predictions
-df_res.to_csv('resources/2_predictions.csv',index=False)
+df_res.to_csv(predictions_path, index=False)

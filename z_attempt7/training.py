@@ -8,14 +8,16 @@ import xgboost as xgb
 import matplotlib.pyplot as plt
 from sklearn.model_selection import GridSearchCV
 
-# Define the parameter grid to search
 
+import os
 # --- Step 1: Load and Prepare Data ---
 # Load the data from the CSV file.
 try:
-    df = pd.read_csv('resources/7_Building_A.csv')
+    parent = os.path.dirname(__file__)
+    data_path=os.path.join(parent, 'Building_A.csv')
+    df = pd.read_csv(data_path)
 except FileNotFoundError:
-    print("Error: File not found in resources folder.")
+    print("Error: Building_A.csv not found in folder.")
     exit()
 
 # --- Step 2: Feature Selection and Data Splitting ---
@@ -99,6 +101,6 @@ plt.show()
 # y_pred = model.predict(X_test)
 # # --- Step 5: Save the Model ---
 # # Save the trained model to a file
-model_filename = 'rt_model_7.joblib'
+model_filename = os.path.join(parent, 'rt_model.joblib')
 joblib.dump(final_model, model_filename)
 print(f"Model saved as {model_filename}")
