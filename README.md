@@ -21,6 +21,8 @@ Nearest weather station : Hong Kong Park
 | 11. | Early stopping to prevent overfitting | A | 0.20528351341103
 | 12. | Add features - 'wind', 'rain' | A | 0.203494898452382
 | 13. | Interpolate - 'humidity', 'temperature' due to 15m vs 1h intervals | A | 0.2237978076295
+| 14. | Tune model param - increase max depth | A | 0.229259198863011
+
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
 - Does it matter whether it is a Monday or Friday ? Or only weekend or weekday.
