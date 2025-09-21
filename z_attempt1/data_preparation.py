@@ -1,5 +1,5 @@
 import pandas as pd
-
+import os
 def create_time_features(df, timestamp_col):
     """
     Create basic time-based features from timestamp
@@ -49,4 +49,5 @@ df = create_time_features( df, 'record_timestamp')
 # print( f'{len(df)} rows where "Total Cooling Load != 0" .' )
 
 
-df.to_csv('resources/1_Building_A.csv', index=False)
+parent = os.path.dirname(__file__)
+df.to_csv(os.path.join(parent, 'Building_A.csv'), index=False)
