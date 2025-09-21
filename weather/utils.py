@@ -22,6 +22,36 @@ def extract_weather( station_name='Hong Kong Park', timestamp_col='datetime'):
     
     return df
 
+def extract_weather_interpolated( station_name='Hong Kong Park', timestamp_col='datetime'):
+    df = pd.read_csv('./weather/data/daily_weather.csv')
+
+    df = df.copy()
+    df = df.drop('source_zip', axis=1)
+    df = df.drop('source_xml', axis=1)
+    df = df[ ( df['station_name'] == station_name  ) ]
+    df = df.drop('station_name', axis=1)
+    # Convert to datetime
+    df[timestamp_col] = pd.to_datetime(df[timestamp_col], format='%Y-%m-%d %H:%M:%S')
+    df[timestamp_col] = df[timestamp_col] - pd.Timedelta(minutes=2)
+    df = df.drop_duplicates(subset=[timestamp_col])
+
+    df_15min = df.set_index(timestamp_col).resample('15T').asfreq()
+    print(df_15min.head())
+    df_15min['temperature'] = df_15min['temperature'].interpolate(method='linear')
+    df_15min['humidity'] = df_15min['humidity'].interpolate(method='linear')
+    print(df_15min.head())
+    df_15min = df_15min.reset_index()
+ 
+    # Extract features
+    df_15min['hour_of_day'] = df_15min[timestamp_col].dt.hour
+    df_15min['month'] = df_15min[timestamp_col].dt.month
+    df_15min['day_of_month'] = df_15min[timestamp_col].dt.day
+    df_15min['year'] = df_15min[timestamp_col].dt.year
+    # df_15min = df_15min.drop('datetime', axis=1)
+    # df_15min.to_csv('resources/weatherzxc.csv', index=False)
+    
+    return df_15min
+
 def extract_holiday():
     df = pd.read_csv('./weather/data/hkholidays.csv')
 
@@ -83,6 +113,10 @@ def merge_df(df1, df2, columns):
 
 def generate_weather_feature(df):
     weather_df = extract_weather()
+    return merge_df(df, weather_df, ['hour_of_day', 'month', 'year', 'day_of_month'])
+
+def generate_weather_feature_interpolated(df):
+    weather_df = extract_weather_interpolated()
     return merge_df(df, weather_df, ['hour_of_day', 'month', 'year', 'day_of_month'])
 
 
