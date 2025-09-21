@@ -74,4 +74,6 @@ df = create_time_features( df, 'record_timestamp')
 df = create_weather_features(df)
 
 print( "Final shape : " + str(df.shape) )
-df.to_csv('resources/7_Building_A.csv', index=False)
+import os
+parent = os.path.dirname(__file__)
+df.to_csv(os.path.join(parent, 'Building_A.csv'), index=False)

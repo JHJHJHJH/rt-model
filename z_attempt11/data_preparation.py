@@ -93,4 +93,6 @@ df = create_weather_features(df)
 df = create_holiday_feature(df)
 
 print( "Final shape : " + str(df.shape) )
-df.to_csv('resources/11_Building_A.csv', index=False)
+import os
+parent = os.path.dirname(__file__)
+df.to_csv(os.path.join(parent, 'Building_A.csv'), index=False)
