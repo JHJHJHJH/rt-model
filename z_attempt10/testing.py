@@ -55,7 +55,9 @@ df = create_time_features(df, 'prediction_time')
 df = utils.generate_weather_feature(df)
 df = utils.generate_solar_feature(df)
 df = utils.generate_holiday_feature(df)
-X_test = df[['hour_of_day', 'is_weekend', 'is_business_hour', 'is_holiday', 'temperature', 'humidity', 'solar', 'season_Fall', 'season_Spring', 'season_Summer', 'season_Winter']]
+features = ['hour_of_day', 'is_weekend', 'is_business_hour', 'is_holiday', 'temperature', 'humidity', 'solar', 'season_Fall', 'season_Spring', 'season_Summer', 'season_Winter']
+X_test = df[ features ]
+
 loaded_model = joblib.load('rt_model_10.joblib')
 # predictions = loaded_model.predict(X_test)
 predictions = numpy.maximum(0., loaded_model.predict(X_test) )
