@@ -67,7 +67,7 @@ X_test = df[features]
 
 loaded_model = joblib.load(model_path)
 dval = xgb.DMatrix(X_test, feature_names=features)
-predictions = numpy.maximum(0., loaded_model.predict(X_test) )
+predictions = numpy.maximum(0., loaded_model.predict(dval) )
 df_res =  pd.read_csv('resources/Result.csv')
 df_res['predicted_load'] = predictions
 df_res.to_csv(predictions_path, index=False)

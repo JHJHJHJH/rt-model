@@ -49,4 +49,6 @@ df = df[ ( df['Total_Cooling_Load'] != 0 ) ]
 print( f'{len(df)} rows where "Total Cooling Load != 0" .' )
 
 
-df.to_csv('resources/2_Building_A.csv', index=False)
+import os
+parent = os.path.dirname(__file__)
+df.to_csv(os.path.join(parent, 'Building_A.csv'), index=False)
