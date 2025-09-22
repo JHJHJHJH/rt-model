@@ -23,6 +23,7 @@ Nearest weather station : Hong Kong Park
 | 13. | Interpolate - 'humidity', 'temperature' due to 15m vs 1h intervals | A | 0.2237978076295
 | 14. | Tune model param - increase max depth | A | 0.229259198863011
 | 15. | Discovered and fix interpolated data error from #13 | A | 0.208219339460784
+| 16. | Prepare, train, test Building B dataset separately | A & B | 0.2066380966636
 
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.

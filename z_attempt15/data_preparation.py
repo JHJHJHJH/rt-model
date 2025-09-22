@@ -108,30 +108,3 @@ print( "Final shape : " + str(df.shape) )
 import os
 parent = os.path.dirname(__file__)
 df.to_csv(os.path.join(parent, 'Building_A.csv'), index=False)
-
-
-
-
-# df_b = pd.read_csv('resources/Building_B_summary_table.csv')
-# #Data preparation
-# print( "Initial shape : " + str(df_b.shape) )
-
-# df_b = calculate_cooling_load(df_b)
-
-# #clean NaN
-# print("Dropping NaN values...")
-# df_b.dropna(inplace=True)
-# print( f'{len(df_b)} rows after dropna().' )
- 
-# df_b = create_time_features( df_b, 'record_timestamp')
-
-# df_b = create_weather_features(df_b)
-
-# # df_b = create_holiday_feature(df_b)
-
-# # df_b = create_rain_wind_features(df_b)
-
-# print( "Final shape : " + str(df_b.shape) )
-# import os
-# parent = os.path.dirname(__file__)
-# df_b.to_csv(os.path.join(parent, 'Building_B.csv'), index=False)
