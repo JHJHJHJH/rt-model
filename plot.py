@@ -9,8 +9,7 @@ import datetime
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-
-df = pd.read_csv('z_attempt15\Building_B.csv') #USER INPUT FOLDER.
+df = pd.read_csv('z_attempt18//Building_A.csv') #USER INPUT FOLDER.
 #Data preparation
 df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%Y-%m-%d %H:%M:%S')
 
