@@ -68,8 +68,8 @@ model_a = xgb.train(
     verbose_eval=50
 )
 
-# fig, ax = plt.subplots(figsize=(10, 12))
-# xgb.plot_importance(model_a, importance_type='weight', ax=ax) # 'weight' is the number of times a feature is used
+fig, ax = plt.subplots(figsize=(10, 12))
+xgb.plot_importance(model_a, importance_type='weight', ax=ax) # 'weight' is the number of times a feature is used
 # plt.show()
 model_filename = os.path.join(parent, 'rt_model_a.joblib')
 joblib.dump(model_a, model_filename)
@@ -87,15 +87,6 @@ except FileNotFoundError:
 # --- Step 2: Feature Selection and Data Splitting ---
 # For this example, we'll focus on CHR-01
 target = 'Total_Cooling_Load'
-
-# One-hot encode the 'season' column
-df = pd.get_dummies(df, columns=['season'])
-season_columns = [col for col in df.columns if col.startswith('season_')]
-
-features = ['hour_of_day', 'is_weekend', 'is_business_hour','is_holiday','temperature','humidity','solar', 'rain', 'wind']
-features = features + season_columns
-
-print( features )
 
 # Check if all required columns are present
 required_columns = features + [target]

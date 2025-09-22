@@ -25,7 +25,7 @@ Nearest weather station : Hong Kong Park
 | 15. | Discovered and fix interpolated data error from #13 | A | 0.208219339460784
 | 16. | Prepare, train, test Building B dataset separately | A & B | 0.2066380966636
 | 17. | Remove booster from A | A & B | 0.203805870641031
-
+| 18. | Attempt remove 'solar' due to high weightage, tune params to reduce overfitting | A & B | 0.213344195415542
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
 - Does it matter whether it is a Monday or Friday ? Or only weekend or weekday.
