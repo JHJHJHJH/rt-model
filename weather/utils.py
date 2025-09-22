@@ -44,12 +44,12 @@ def extract_weather_interpolated( station_name='Hong Kong Park', timestamp_col='
  
     # Extract features
     df_15min['hour_of_day'] = df_15min[timestamp_col].dt.hour
+    df_15min['minute'] = df_15min[timestamp_col].dt.minute
     df_15min['month'] = df_15min[timestamp_col].dt.month
     df_15min['day_of_month'] = df_15min[timestamp_col].dt.day
     df_15min['year'] = df_15min[timestamp_col].dt.year
-    # df_15min = df_15min.drop('datetime', axis=1)
+    df_15min = df_15min.drop('datetime', axis=1)
     # df_15min.to_csv('resources/weatherzxc.csv', index=False)
-    
     return df_15min
 
 def extract_holiday():
@@ -117,7 +117,7 @@ def generate_weather_feature(df):
 
 def generate_weather_feature_interpolated(df):
     weather_df = extract_weather_interpolated()
-    return merge_df(df, weather_df, ['hour_of_day', 'month', 'year', 'day_of_month'])
+    return merge_df(df, weather_df, ['hour_of_day', 'month', 'year', 'day_of_month','minute'])
 
 
 def generate_holiday_feature(df):
