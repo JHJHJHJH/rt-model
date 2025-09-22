@@ -128,8 +128,8 @@ fine_tune_params = {
 model_b = xgb.train(
     fine_tune_params,
     dtrain_b,
-    num_boost_round=100, # Train for a few extra rounds
-    xgb_model=booster_building_a, # This is the key: start from the old model
+    num_boost_round=100, 
+    xgb_model=booster_building_a, 
     verbose_eval=10
 )
 

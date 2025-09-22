@@ -24,6 +24,7 @@ Nearest weather station : Hong Kong Park
 | 14. | Tune model param - increase max depth | A | 0.229259198863011
 | 15. | Discovered and fix interpolated data error from #13 | A | 0.208219339460784
 | 16. | Prepare, train, test Building B dataset separately | A & B | 0.2066380966636
+| 17. | Remove booster from A | A & B | 0.203805870641031
 
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
