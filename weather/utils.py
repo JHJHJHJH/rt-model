@@ -106,7 +106,7 @@ def extract_rain():
     return df
 
 def merge_df(df1, df2, columns):
-    merged_df = pd.merge( df1, df2 , on=columns, how='left')
+    merged_df = pd.merge( df1, df2 , on=columns, how='left').fillna(0)
     print(merged_df.head())
 
     return merged_df
@@ -143,3 +143,11 @@ def generate_rain_feature(df):
 
     merged = merge_df(df, solar_df, ['month', 'year', 'day_of_month'])
     return merged
+
+def generate_holiday_feature(df):
+    holiday_df = extract_holiday()
+    return merge_df(df, holiday_df, ['month', 'year', 'day_of_month'])
+
+def generate_workday_feature(df):
+    df['is_workday']= ((df['is_weekend'] == 0) & (df['is_holiday'] == 0)).astype(int)
+    return df

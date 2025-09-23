@@ -25,9 +25,10 @@ https://colab.research.google.com/drive/1D1EHKsKSAgyYJ7YM3pw6ZnMHXwMmEDi7#scroll
 | 15. | Discovered and fix interpolated data error from #13| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday','solar', 'temperature', 'humidity', 'wind', 'rain'  | A | 0.208219339460784
 | 16. | Prepare, train, test Building B dataset separately| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday','solar', 'temperature', 'humidity', 'wind', 'rain'  | A & B | 0.2066380966636
 | 17. | Remove booster from A | 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday','solar', 'temperature', 'humidity', 'wind', 'rain' | A & B | 0.203805870641031
-| 18. | Attempt remove 'solar' due to high weightage, tune params to reduce overfitting| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday', 'temperature', 'humidity', 'wind', 'rain'  | A & B | 0.213344195415542
+| 18. | Reinstate booster. Attempt remove 'solar' due to high weightage, tune params to reduce overfitting| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday', 'temperature', 'humidity', 'wind', 'rain'  | A & B | 0.213344195415542
 | 19. | Debug model with importance chart. Remove 'solar', 'wind', 'rain', 'humidity' | 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday', 'temperature', 'humidity' | A & B | 0.21024732902238
 | 20. | Remove 'temperature'| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday' | A & B | 0.15415837836889
+| 21. | Combine 'is_weekend' and 'is_holiday' to 'is_workday' | 'hour_of_day', ''season', 'is_business_hour', 'is_workday' | A & B | 
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
 - Does it matter whether it is a Monday or Friday ? Or only weekend or weekday.
@@ -40,8 +41,6 @@ https://colab.research.google.com/drive/1D1EHKsKSAgyYJ7YM3pw6ZnMHXwMmEDi7#scroll
 ## Data
 weather report : datetime, relative humidity, temperature, station
 source : https://data.gov.hk/en-data/dataset/hk-hko-rss-current-weather-report
-
-global solar radiation : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-global-solar-radiation
 
 mean heat index : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-maximum-mean-heat-index
 
@@ -67,13 +66,3 @@ Provide instructions and examples for use.
 ```python
 # Code example
 ```
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
