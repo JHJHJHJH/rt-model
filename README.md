@@ -28,7 +28,8 @@ https://colab.research.google.com/drive/1D1EHKsKSAgyYJ7YM3pw6ZnMHXwMmEDi7#scroll
 | 18. | Reinstate booster. Attempt remove 'solar' due to high weightage, tune params to reduce overfitting| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday', 'temperature', 'humidity', 'wind', 'rain'  | A & B | 0.213344195415542
 | 19. | Debug model with importance chart. Remove 'solar', 'wind', 'rain', 'humidity' | 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday', 'temperature', 'humidity' | A & B | 0.21024732902238
 | 20. | Remove 'temperature'| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday' | A & B | 0.15415837836889
-| 21. | Combine 'is_weekend' and 'is_holiday' to 'is_workday' | 'hour_of_day', ''season', 'is_business_hour', 'is_workday' | A & B | 
+| 21. | Combine 'is_weekend' and 'is_holiday' to 'is_workday' | 'hour_of_day', ''season', 'is_business_hour', 'is_workday' | A & B | 0.154422246696922
+| 22. | Reinstate 'is_weekend' and 'is_holiday' since score reduced | 'hour_of_day', ''season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday' | A & B | 0.154172032606424
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
 - Does it matter whether it is a Monday or Friday ? Or only weekend or weekday.
