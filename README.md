@@ -1,10 +1,18 @@
-# Project Title
+# RT-MODEL
 
-A brief description of what this project does and who it's for.
+A ML model to predict a building's total cooling load.
 
-## 
-Nearest weather station : Hong Kong Park
-https://colab.research.google.com/drive/1D1EHKsKSAgyYJ7YM3pw6ZnMHXwMmEDi7#scrollTo=Qg26AK7w51OJ
+## Project structure
+- `z_attempt(n)` folders are records of each attempt to improve the model's NRMSE score.
+- `z_attempt(n)/data_preparation.py` prepares the data for training and testing.
+- `z_attempt(n)/training.py` trains the model.
+- `z_attempt(n)/testing.py` tests the model.
+- `weather` folder contains scripts to fetch and process weather data.
+- `resources` folder contains the raw data.
+- `images` folder contains images used in the notebooks.
+- `rt_model.ipynb` is the main notebook for the project.
+- `plot.py` contains helper functions for plotting.
+
 ## Changelog
 | Attempt | Changelog | Features | Building(s) | NRMSE |
 | ------------- |-------------|-------------|-------------|-------------|
@@ -39,24 +47,15 @@ https://colab.research.google.com/drive/1D1EHKsKSAgyYJ7YM3pw6ZnMHXwMmEDi7#scroll
 *7. To compare with (5), why is adding humidity and temperature worst?
 *15. Discovered data error on date vs temp/humidity interpolation
 
-## Data
-weather report : datetime, relative humidity, temperature, station
-source : https://data.gov.hk/en-data/dataset/hk-hko-rss-current-weather-report
-
-mean heat index : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-maximum-mean-heat-index
-
-mean wind speed : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-mean-wind-speed
-
-rainfall : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-total-rainfall
-
-solar radiation : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-global-solar-radiation
-
-hk holidays : https://data.gov.hk/en-data/dataset/hk-dpo-statistic-cal
 ## Installation
 
 Install the project and its dependencies using pip:
 
 ```bash
+#optional
+python -m venv myenv #create project environment
+.\myenv\Scripts\activate #activate environment
+
 pip install -r requirements.txt
 ```
 
@@ -67,3 +66,16 @@ Provide instructions and examples for use.
 ```python
 # Code example
 ```
+## Data
+
+Humidity & temperature : https://data.gov.hk/en-data/dataset/hk-hko-rss-current-weather-report
+
+mean heat index : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-maximum-mean-heat-index
+
+mean wind speed : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-mean-wind-speed
+
+rainfall : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-total-rainfall
+
+solar radiation : https://data.gov.hk/en-data/dataset/hk-hko-rss-daily-global-solar-radiation
+
+HK holidays : https://data.gov.hk/en-data/dataset/hk-dpo-statistic-cal
