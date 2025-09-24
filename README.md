@@ -38,6 +38,7 @@ A ML model to predict a building's total cooling load.
 | 20. | Remove 'temperature'| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday' | A & B | 0.15415837836889
 | 21. | Combine 'is_weekend' and 'is_holiday' to 'is_workday' | 'hour_of_day', ''season', 'is_business_hour', 'is_workday' | A & B | 0.154422246696922
 | 22. | Reinstate 'is_weekend' and 'is_holiday' since score reduced | 'hour_of_day', ''season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday' | A & B | 0.154172032606424
+| 23. | Add feature 'temperature_lag_6' | 'hour_of_day', ''season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday', 'temperature_lag_6' | A & B |  |
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
 - Does it matter whether it is a Monday or Friday ? Or only weekend or weekday.
@@ -53,7 +54,7 @@ Install the project and its dependencies using pip:
 
 ```bash
 #optional
-python -m venv myenv #create project environment
+py -3.13 -m venv myenv#create project environment
 .\myenv\Scripts\activate #activate environment
 
 pip install -r requirements.txt

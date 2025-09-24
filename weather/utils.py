@@ -151,3 +151,19 @@ def generate_holiday_feature(df):
 def generate_workday_feature(df):
     df['is_workday']= ((df['is_weekend'] == 0) & (df['is_holiday'] == 0)).astype(int)
     return df
+
+
+def generate_weather_lag_features(df):
+    # Define the lag periods you want to test (in hours)
+    lags = [1, 2, 3, 4, 6] # e.g., 1 hour ago, 2 hours ago, etc.
+    
+    # Create lagged features for temperature and solar radiation
+    for lag in lags:
+        shift_ind = lag * 4 
+        df[f'temperature_lag_{lag}'] = df['temperature'].shift(shift_ind) 
+        # df[f'solar_radiation_lag_{lag}'] = df['solar_radiation'].shift(lag)
+
+    df = df.fillna( df['temperature'].iloc[0])
+    # df.dropna(inplace=True)
+
+    return df
