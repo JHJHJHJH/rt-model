@@ -161,7 +161,7 @@ def generate_weather_lag_features(df):
     for lag in lags:
         shift_ind = lag * 4 
         df[f'temperature_lag_{lag}'] = df['temperature'].shift(shift_ind)
-        df[f'temperature_lag_{lag}'] = df[f'temperature_lag_{lag}'] .where( df['is_business_hour'] == 1 | df['is_workday']  , 0)
+        df[f'temperature_lag_{lag}'] = df[f'temperature_lag_{lag}'] .where( (df['is_business_hour'] == 1) | (df['is_workday'] == 0)  , 0)
         # df[f'solar_radiation_lag_{lag}'] = df['solar_radiation'].shift(lag)
 
     df = df.fillna( df['temperature'].iloc[0])

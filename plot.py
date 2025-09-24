@@ -1,15 +1,12 @@
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
-import datetime
-import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-df = pd.read_csv('z_attempt31//Building_A.csv') #USER INPUT FOLDER.
+df = pd.read_csv('z_final//Building_A.csv') #USER INPUT FOLDER.
 #Data preparation
 df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%Y-%m-%d %H:%M:%S')
 # df['record_timestamp'] = pd.to_datetime(df['record_timestamp'], format='%d/%m/%Y %H:%M') # summary table

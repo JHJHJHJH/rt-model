@@ -7,11 +7,31 @@ A ML model to predict a building's total cooling load.
 - `z_attempt(n)/data_preparation.py` prepares the data for training and testing.
 - `z_attempt(n)/training.py` trains the model.
 - `z_attempt(n)/testing.py` tests the model.
-- `weather` folder contains scripts to fetch and process weather data.
+- `weather` folder contains scripts to fetch and process data.
 - `resources` folder contains the raw data.
 - `images` folder contains images used in the notebooks.
-- `rt_model.ipynb` is the main notebook for the project.
-- `plot.py` contains helper functions for plotting.
+- `rt_model.ipynb` documented thoughts, analysis, findings
+- `plot.py` file for Exploratory Data Analysis (EDA). Defaulted to final dataset
+
+## Installation
+
+Install the project and its dependencies using pip:
+
+```bash
+#optional
+py -3.13 -m venv myenv#create project environment
+.\myenv\Scripts\activate #activate environment
+
+pip install -r requirements.txt
+```
+
+## Usage
+
+Provide instructions and examples for use.
+
+```python
+# Code example
+```
 
 ## Changelog
 | Attempt | Changelog | Features | Building(s) | NRMSE |
@@ -37,9 +57,10 @@ A ML model to predict a building's total cooling load.
 | 19. | Debug model with importance chart. Remove 'solar', 'wind', 'rain', 'humidity' | 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday', 'temperature', 'humidity' | A & B | 0.21024732902238
 | 20. | Remove 'temperature'| 'hour_of_day', 'is_weekend', 'season', 'is_business_hour', 'is_holiday' | A & B | 0.15415837836889
 | 21. | Combine 'is_weekend' and 'is_holiday' to 'is_workday' | 'hour_of_day', ''season', 'is_business_hour', 'is_workday' | A & B | 0.154422246696922
-| 22. | Reinstate 'is_weekend' and 'is_holiday' since score reduced | 'hour_of_day', ''season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday' | A & B | 0.154172032606424
+| 22. | Reinstate 'is_weekend' and 'is_holiday' since score reduced | 'hour_of_day', 'season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday' | A & B | 0.154172032606424
 | 23. | Add feature 'temperature_lag_6' | 'hour_of_day', ''season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday', 'temperature_lag_6' | A & B | 0.218137795540367 |
-| 24. | Set 'temperature_lag_6' = 0 when non-working day and hour | 'hour_of_day', ''season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday', 'temperature_lag_6' | A & B | 0.223406938041396 |
+| 24. | Set 'temperature_lag_6' = 0 when non-working day and hour | 'hour_of_day', ''season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday', 'temperature_lag_6' | A & B | 0.221157498389907 |
+| Final| Model from attempt 22  | 'hour_of_day', 'season', 'is_business_hour', 'is_workday','is_weekend', 'is_holiday' | A & B | 0.154172032606424 |
 
 *6. Research question/ Hypothesis : Cooling load is affected by occupancy.
 - Does it matter whether it is a Monday or Friday ? Or only weekend or weekday.
@@ -49,25 +70,6 @@ A ML model to predict a building's total cooling load.
 *7. To compare with (5), why is adding humidity and temperature worst?
 *15. Discovered data error on date vs temp/humidity interpolation
 
-## Installation
-
-Install the project and its dependencies using pip:
-
-```bash
-#optional
-py -3.13 -m venv myenv#create project environment
-.\myenv\Scripts\activate #activate environment
-
-pip install -r requirements.txt
-```
-
-## Usage
-
-Provide instructions and examples for use.
-
-```python
-# Code example
-```
 ## Data
 
 Humidity & temperature : https://data.gov.hk/en-data/dataset/hk-hko-rss-current-weather-report
