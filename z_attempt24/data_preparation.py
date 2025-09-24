@@ -60,6 +60,7 @@ def calculate_cooling_load(df):
         df['Total_Power_Consumption'] = df['CHR-01-KW'] + df['CHR-02-KW'] + df['CHR-03-KW'] + df['CHR-04-KW']
         # COP
         df['Total_COP'] = df['Total_Cooling_Load'] / df['Total_Power_Consumption']
+    df['chillers_running'] = df[['CHR-01-CHWFWR', 'CHR-02-CHWFWR', 'CHR-03-CHWFWR', 'CHR-04-CHWFWR']].apply(lambda x: sum(x > 0), axis=1)
 
     return df
 
