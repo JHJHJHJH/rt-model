@@ -36,10 +36,10 @@ def extract_weather_interpolated( station_name='Hong Kong Park', timestamp_col='
     df = df.drop_duplicates(subset=[timestamp_col])
 
     df_15min = df.set_index(timestamp_col).resample('15T').asfreq()
-    print(df_15min.head())
+
     df_15min['temperature'] = df_15min['temperature'].interpolate(method='linear')
     df_15min['humidity'] = df_15min['humidity'].interpolate(method='linear')
-    print(df_15min.head())
+
     df_15min = df_15min.reset_index()
  
     # Extract features
@@ -107,7 +107,6 @@ def extract_rain():
 
 def merge_df(df1, df2, columns):
     merged_df = pd.merge( df1, df2 , on=columns, how='left').fillna(0)
-    print(merged_df.head())
 
     return merged_df
 

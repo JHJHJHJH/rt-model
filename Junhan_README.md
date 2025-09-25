@@ -4,15 +4,11 @@ A ML model to predict a building's total cooling load.
 
 ## Project structure
 - `PredictCoolingLoad.ipynb` documented thoughts, analysis, findings
-- `plot.py` file for Exploratory Data Analysis (EDA). Defaulted to final dataset
+- `plot.py` file for Exploratory Data Analysis (EDA). Defaulted to final dataset.
 - `weather` folder contains scripts to fetch and process data.
-- `resources` folder contains the raw data.
+- `weather/utils.py` contains methods to transform dataframe data.
+- `resources` folder contains provided raw data.
 - `images` folder contains images used in the notebooks.
-- `z_attempt(n)` folders are records of each attempt to improve the model's NRMSE score.
-- `z_attempt(n)/data_preparation.py` prepares the data for training and testing.
-- `z_attempt(n)/training.py` trains the model.
-- `z_attempt(n)/testing.py` tests the model.
-
 
 ## Installation
 
@@ -20,16 +16,23 @@ Install the project and its dependencies using pip:
 
 ```bash
 #optional
-py -3.13 -m venv myenv#create project environment
+py -3.13 -m venv myenv #create project environment
 .\myenv\Scripts\activate #activate environment
 
-pip install -r requirements.txt
+pip install -r Junhan_requirements.txt
 ```
 
 ## Usage
 
-```python
-# Code example
+```bash
+# Run code by sequence
+py Junhan_1data_preparation.py #Creates csv for analysis
+
+py plot.py #optional, runs plotly dashboard for EDA -> open here http://127.0.0.1:8050/
+
+py Junhan_2Finaltraining.py #Trains model, creates model artifacts
+
+py Junhan_3Finaltesting.py #Test, creates predictions.csv
 ```
 
 ## Changelog
