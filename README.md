@@ -28,8 +28,15 @@ pip install -r requirements.txt
 
 ## Usage
 
-```python
-# Code example
+```bash
+# Run code by sequence
+py z_attempt(n)/data_preparation.py #Creates csv for analysis
+
+py plot.py #optional, runs plotly dashboard for EDA -> open here http://127.0.0.1:8050/
+
+py z_attempt(n)/training.py #Trains model, creates model artifacts
+
+py z_attempt(n)/testing.py #Test, creates predictions.csv
 ```
 
 ## Changelog
